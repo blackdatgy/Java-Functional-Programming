@@ -1,5 +1,8 @@
 package com.java.programming.functional;
 
+import java.util.Arrays;
+import java.util.List;
+
 /******************************************************************************
  * This version uses a stream then a parallel stream to process the data. Note
  * that in the first version the names are printed in the order that they are 
@@ -11,14 +14,21 @@ package com.java.programming.functional;
  * @author Dr Kevan Buckley, University of Wolverhampton, 2019
  ******************************************************************************/
 
-public class GFGJava8 
+public class FirstExperiment 
 {
-	public static void main(String[] args) 
-	{
-		Runnable r = () -> System.out.println("Running in Runnable thread");
+	public void run() {
+	    String[] n1 = { "Mary Smith", "Maria Rodriguez", "David Smith", "Maria Garcia", "Robert Smith", "Michael Smith", "James Smith" };
 
-		r.run();
+	    List<String> n2 = Arrays.asList(n1);  
 
-		System.out.println("Running in main thread");
-	}
+	    System.out.println("Serial names\n---------");
+	    n2.stream().forEach(name -> System.out.println(name));
+
+	    System.out.println("\nParallel names\n---------");
+	    n2.parallelStream().forEach(name -> System.out.println(name));
+	  }
+
+	  public static void main(String[] args) {
+	    new FirstExperiment().run();
+	  }
 }
